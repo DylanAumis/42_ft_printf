@@ -30,7 +30,7 @@ all:			$(NAME)
 $(NAME): 		$(OBJS)
 				@echo "\033[1;35m\n                              ⌛️Compiling files...\033[0m"
 				ar rcs $(NAME) $(OBJS)
-				@echo "\033[32;1m\n                     Library has compiled successfully! ✅ \033[0m"
+				@echo "\033[32;1m\n                     Project has compiled successfully! ✅ \033[0m"
 				@echo "\033[32;1m\n 📚 Library '$(NAME)' has been created in: \n    └─ 📂 \033[4;36m ~ $(PWD)\033[0m"
 
 clean:

@@ -27,30 +27,33 @@ CFLAGS			=	-Wall -Wextra -Werror -I.
 
 NAME			=	libftprintf.a
 
-all: $(OBJ_DIR) $(NAME)
+all: $(OBJ_DIR) $(OBJS) $(NAME)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: src/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: src/%.c | $(OBJ_DIR)
+	@mkdir -p $(@D)
+	@printf '\033[A\033[19C'"⌛ [\e[1;96mCompiling\033[0m]\033[35m $<\033[0m \n"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): 		$(OBJS)
-				@echo "\033[1;35m\n                              ⌛️Compiling files...\033[0m"
-				ar rcs $(NAME) $(OBJS)
-				@echo "\033[32;1m\n                     Library has compiled successfully! ✅ \033[0m"
-				@echo "\033[32;1m\n 📚 Library '$(NAME)' has been created in: \n    └─ 📂 \033[4;36m ~ $(PWD)\033[0m"
+			@ar rcs $(NAME) $(OBJS)
+			@printf '\033[A\033[20C'"\033[32;1m  ✅ Library has compiled successfully!          \033[0m"
+			@printf "\n\n    [🏳️ -FLAGS used: $(CFLAGS)]"
+			@echo "\033[32;1m\n 📚 Library \e[7m$(NAME)\e[27m has been created in: \n    └─ 📂 \033[4;36m ~ $(PWD)\033[0m"
 
 clean:
-				$(RM) -r $(OBJ_DIR)
+	$(RM) -r $(OBJ_DIR)
 
 fclean:
-	@echo "\033[1;33m\n                        [Cleaning directories with \033[0;36mfclean\033[1;33m]\n\033[0m"
+	@echo "\033[1;93m\n                        [Cleaning directories with \033[0;96mfclean\033[1;93m]\n\033[0m"
 	@make clean
 	$(RM) $(NAME)
 
-re:	fclean
-	make all
+re:
+	@make fclean
+	@echo "\033[1;93m\n                             [Calling \033[0;96mmake all\033[1;93m rule]\n\n\033[0m"
+	@make -s all
 
-
-.PHONY:		all clean fclean re
+.PHONY: all clean fclean re

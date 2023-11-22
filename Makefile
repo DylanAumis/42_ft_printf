@@ -40,7 +40,7 @@ $(OBJ_DIR)/%.o: src/%.c | $(OBJ_DIR)
 $(NAME): 		$(OBJS)
 			@ar rcs $(NAME) $(OBJS)
 			@printf '\033[A\033[20C'"\033[32;1m  ✅ Library has compiled successfully!          \033[0m"
-			@printf "\n\n    [🏳️ -FLAGS used: $(CFLAGS)]"
+			@printf "\n\n    [🏳️ FLAGS: \033[0;33m$(CFLAGS)\033[0m]"
 			@echo "\033[32;1m\n 📚 Library \e[7m$(NAME)\e[27m has been created in: \n    └─ 📂 \033[4;36m ~ $(PWD)\033[0m"
 
 clean:

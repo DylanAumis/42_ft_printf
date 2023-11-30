@@ -18,7 +18,7 @@ SRC_MAIN		=	src/ft_printf.c \
 				src/ft_handlehex.c
 SRCS			= ${SRC_MAIN}
 
-OBJ_DIR			= objs
+OBJ_DIR			= .objs
 OBJS 			= $(patsubst src/%.c,$(OBJ_DIR)/%.o,$(SRCS))						
 
 CC				=	gcc
